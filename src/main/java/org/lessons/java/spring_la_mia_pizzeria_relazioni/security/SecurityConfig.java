@@ -1,8 +1,10 @@
 package org.lessons.java.spring_la_mia_pizzeria_relazioni.security;
 
+import org.lessons.java.spring_la_mia_pizzeria_relazioni.service.DataBaseUserDetailsService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
+import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.crypto.factory.PasswordEncoderFactories;
@@ -27,5 +29,22 @@ public class SecurityConfig {
     @Bean
     PasswordEncoder passwordEncoder() {
         return PasswordEncoderFactories.createDelegatingPasswordEncoder();
+    }
+
+    @Bean
+    DataBaseUserDetailsService dataBaseUserDetailsService() {
+        return new DataBaseUserDetailsService();
+    }
+
+    @Bean
+    @SuppressWarnings("deprecation")
+    DaoAuthenticationProvider daoAuthenticationProvider() {
+        DaoAuthenticationProvider daoAuthProvider = new DaoAuthenticationProvider();
+
+        daoAuthProvider.setUserDetailsService(dataBaseUserDetailsService());
+
+        daoAuthProvider.setPasswordEncoder(passwordEncoder());
+
+        return daoAuthProvider;
     }
 }
