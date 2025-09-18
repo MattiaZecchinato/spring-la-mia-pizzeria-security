@@ -18,9 +18,11 @@
                     <h5 class="card-title">[[*{name}]]</h5>
                     <p class="card-text">[[*{description}]]</p>
                     <div class="d-flex">
-                        <a th:href="@{/ingredients/update/{id}(id=*{id})}" class="btn btn-primary">Edit</a>
+                        <a th:href="@{/ingredients/update/{id}(id=*{id})}" class="btn btn-primary"
+                            sec:authorize="hasAuthority('ADMIN')">Edit</a>
 
-                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal">Delete</button>
+                        <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modal"
+                            sec:authorize="hasAuthority('ADMIN')">Delete</button>
                         <form th:action="@{/ingredients/delete/{id}(id=*{id})}" method="post">
                             <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel"
                                 aria-hidden="true">

@@ -9,7 +9,7 @@
     <div th:fragment="discountCard(currentPizza)" class="card">
         <div class="card-body">
             <h5 class="card-title">Discounts</h5>
-            <div class="card-text">
+            <div class="card-text" sec:authorize="hasAuthority('ADMIN')">
                 <a th:href="@{/pizzas/{id}/discount(id=${currentPizza.id})}" class="btn btn-primary">New Discount</a>
             </div>
             <div class="card-text d-flex">
@@ -29,10 +29,10 @@
                             <td>[[*{value}]]%</td>
                             <td>[[*{startTime}]]</td>
                             <td>[[*{endTime}]]</td>
-                            <td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
                                 <a th:href="@{/discount/update/{id}(id=*{id})}" class="btn btn-primary">Edit</a>
                             </td>
-                            <td>
+                            <td sec:authorize="hasAuthority('ADMIN')">
                                 <button class="btn btn-danger" data-bs-toggle="modal"
                                     data-bs-target="#deleteModal">Delete</button>
 

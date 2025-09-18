@@ -14,7 +14,8 @@
     <main>
         <h1 class="text-center">Update Ingredient: [[${ingredient.name}]]</h1>
         <div class="container">
-            <form th:object="${ingredient}" th:action="@{/ingredients/update/{id}(id=${ingredient.id})}" method="post">
+            <form th:object="${ingredient}" th:action="@{/ingredients/update/{id}(id=${ingredient.id})}" method="post"
+                sec:authorize="hasAuthority('ADMIN')">
                 <div class="mb-3">
                     <label for="name" class="form-label">Name</label>
                     <input type="text" class="form-control" id="name" th:field="*{name}">

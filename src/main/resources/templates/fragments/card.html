@@ -12,9 +12,11 @@
             <h5 class="card-title">[[*{price}]]€</h5>
             <p class="card-text">[[*{description}]]</p>
             <div class="d-flex">
-                <a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-primary">Edit</a>
+                <a th:href="@{/pizzas/update/{id}(id=*{id})}" class="btn btn-primary"
+                    sec:authorize="hasAuthority('ADMIN')">Edit</a>
 
-                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal">Delete</button>
+                <button class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                    sec:authorize="hasAuthority('ADMIN')">Delete</button>
                 <form th:action="@{/pizzas/delete/{id}(id=*{id})}" method="post">
                     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
                         aria-hidden="true">

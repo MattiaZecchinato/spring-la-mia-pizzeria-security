@@ -19,7 +19,8 @@
             th:replace="~{fragments/list :: list(${ingredientsList}, '/ingredients')}">
         </th:block>
         <th:block th:replace="~{fragments/searchBar :: searchBar('/pizzas')}"></th:block>
-        <a th:href="@{/ingredients/create}" class="btn btn-primary mt-3">Add Ingredients</a>
+        <a th:href="@{/ingredients/create}" class="btn btn-primary mt-3" sec:authorize="hasAuthority('ADMIN')">Add
+            Ingredients</a>
     </div>
 
 </body>
