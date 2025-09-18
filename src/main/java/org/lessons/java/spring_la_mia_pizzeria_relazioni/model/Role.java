@@ -18,7 +18,7 @@ public class Role {
     private int id;
 
     @NotBlank(message = "Name must be not blank or empty")
-    private int name;
+    private String name;
 
     @ManyToMany(mappedBy = "roles")
     private Set<User> users;
@@ -31,11 +31,11 @@ public class Role {
         this.id = id;
     }
 
-    public int getName() {
+    public String getName() {
         return name;
     }
 
-    public void setName(int name) {
+    public void setName(String name) {
         this.name = name;
     }
 
